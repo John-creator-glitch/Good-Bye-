@@ -6,7 +6,6 @@
  *   1. Scroll-triggered animations (Intersection Observer)
  *   2. Hero parallax effect
  *   3. Gallery lightbox
- *   3B. Background music (autoplay with fallback + toggle button)
  *   4. Stat counter animation
  *
  * No external libraries required — pure vanilla JS.
@@ -119,64 +118,6 @@
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !lightbox.hasAttribute('hidden')) close();
   });
-})();
-
-
-/* ================================================================
- * 3B. BACKGROUND MUSIC
- *
- *    Tries to autoplay a soft track the moment the page loads.
- *    Most browsers block audio with sound until the visitor has
- *    interacted with the page at least once, so if the initial
- *    play() is blocked, we quietly retry on the visitor's first
- *    click/keypress/touch anywhere on the page. The floating
- *    button always reflects the true state and lets anyone turn
- *    the music off if they'd rather browse in silence.
- * ================================================================ */
-(function initBackgroundMusic() {
-  const audio  = document.getElementById('bgMusic');
-  const toggle = document.getElementById('musicToggle');
-  if (!audio || !toggle) return;
-
-  audio.volume = 0.45; /* soft, background-level volume */
-
-  function setPlayingState(isPlaying) {
-    toggle.setAttribute('aria-pressed', String(isPlaying));
-    toggle.setAttribute('aria-label', isPlaying ? 'Pause background music' : 'Play background music');
-  }
-
-  function attemptAutoplay() {
-    const playPromise = audio.play();
-    if (playPromise !== undefined) {
-      playPromise
-        .then(() => setPlayingState(true))
-        .catch(() => {
-          /* Autoplay blocked — wait for the first user interaction */
-          setPlayingState(false);
-          const resumeOnInteraction = () => {
-            audio.play().then(() => setPlayingState(true)).catch(() => {});
-            document.removeEventListener('click', resumeOnInteraction);
-            document.removeEventListener('keydown', resumeOnInteraction);
-            document.removeEventListener('touchstart', resumeOnInteraction);
-          };
-          document.addEventListener('click', resumeOnInteraction, { once: true });
-          document.addEventListener('keydown', resumeOnInteraction, { once: true });
-          document.addEventListener('touchstart', resumeOnInteraction, { once: true });
-        });
-    }
-  }
-
-  /* Manual toggle button always works, regardless of autoplay state */
-  toggle.addEventListener('click', () => {
-    if (audio.paused) {
-      audio.play().then(() => setPlayingState(true)).catch(() => {});
-    } else {
-      audio.pause();
-      setPlayingState(false);
-    }
-  });
-
-  attemptAutoplay();
 })();
 
 
