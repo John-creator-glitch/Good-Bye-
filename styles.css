@@ -1107,3 +1107,78 @@ button {
   /* Achievements: 7/5 split */
   .achievements__grid { grid-template-columns: 7fr 5fr; gap: 5rem; }
 }
+
+
+/* ================================================================
+ * 16. BACKGROUND MUSIC TOGGLE
+ *    Floating circular button, fixed to the viewport, that plays
+ *    or pauses the background track. The three bars animate like
+ *    a soft equaliser while music is playing, and freeze when
+ *    paused/muted.
+ * ================================================================ */
+.music-toggle {
+  position: fixed;
+  right: clamp(1rem, 4vw, 2rem);
+  bottom: clamp(1rem, 4vw, 2rem);
+  z-index: 900;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--clr-navy);
+  border: 1px solid rgba(212,172,96,0.45);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4), 0 0 0 0 rgba(212,172,96,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.music-toggle:hover {
+  transform: scale(1.08);
+  border-color: var(--clr-gold);
+}
+
+/* Gentle glowing ring while playing */
+.music-toggle[aria-pressed="true"] {
+  animation: music-toggle-pulse 2.4s ease-in-out infinite;
+}
+@keyframes music-toggle-pulse {
+  0%, 100% { box-shadow: 0 8px 24px rgba(0,0,0,0.4), 0 0 0 0 rgba(212,172,96,0.28); }
+  50%      { box-shadow: 0 8px 24px rgba(0,0,0,0.4), 0 0 0 8px rgba(212,172,96,0); }
+}
+
+/* Equaliser bars */
+.music-toggle__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 18px;
+}
+.music-toggle__bars span {
+  width: 3px;
+  border-radius: 2px;
+  background: var(--clr-gold);
+  height: 6px;
+  transition: height 0.2s ease, background 0.2s ease;
+}
+
+/* Playing: bars animate up and down like a soft equaliser */
+.music-toggle[aria-pressed="true"] .music-toggle__bars span:nth-child(1) {
+  animation: eq-bounce 0.9s ease-in-out infinite;
+}
+.music-toggle[aria-pressed="true"] .music-toggle__bars span:nth-child(2) {
+  animation: eq-bounce 0.9s ease-in-out infinite 0.2s;
+}
+.music-toggle[aria-pressed="true"] .music-toggle__bars span:nth-child(3) {
+  animation: eq-bounce 0.9s ease-in-out infinite 0.4s;
+}
+@keyframes eq-bounce {
+  0%, 100% { height: 6px; }
+  50%      { height: 16px; }
+}
+
+/* Paused/muted: bars sit flat and dim */
+.music-toggle[aria-pressed="false"] .music-toggle__bars span {
+  height: 4px;
+  background: rgba(212,172,96,0.45);
+}
