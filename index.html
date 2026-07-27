@@ -233,7 +233,7 @@
         <img src="/imgs/internal_meeting_1784966033651.jpeg" alt="First OCE internal meeting" class="photo-tile__img" style="object-position:center" />
         <div class="photo-tile__caption">
           <time class="eyebrow">2022</time>
-          <p>OCE team meeting.</p>
+          <p>First OCE team meeting.</p>
         </div>
       </article>
 
@@ -446,7 +446,7 @@
         <div class="memory-card__img-wrap">
           <img src="/imgs/office_party_1784966033652.jpeg" alt="Office party" class="photo-img" />
         </div>
-        <figcaption class="memory-card__caption">Farewell celebration together.</figcaption>
+        <figcaption class="memory-card__caption">An evening of celebration together.</figcaption>
       </figure>
 
       <figure class="memory-card" data-animate data-delay="300">
@@ -536,62 +536,65 @@
   </div>
 </section><!-- /#gallery -->
 
+
 <!-- ============================================================
   SECTION 7 — THANK YOU TEAM
   Split layout: photo left, tribute text right
 ============================================================ -->
 <section id="thankyou" class="thankyou">
- 
+
   <!-- Left: full-bleed photo -->
   <div class="thankyou__photo" data-animate>
     <img src="/imgs/managers_1784966033651.jpeg"
          alt="OCE managers and leadership team"
          class="thankyou__photo-img" />
   </div>
- 
+
   <!-- Right: tribute text -->
   <div class="thankyou__content" data-animate data-delay="200">
     <span class="thankyou__open-quote" aria-hidden="true">"</span>
- 
+
     <div class="thankyou__inner">
       <span class="gold-star mb-sm">✦</span>
       <h2 class="thankyou__heading">To My Manager &amp; The Team</h2>
- 
+
       <p class="thankyou__para">
         To <strong>Dr. Shahid Hassan</strong>, thank you for leading this office with an
-        example worth following. And to <strong>Muhammad Usman Siddiqui</strong>, thank you. You
+        example worth following. And to <strong>Muhammad Usman</strong>, thank you. You
         were the manager who guided me through the complexities of this role, trusted me
         to build new systems, and gave me the space to grow over these four and a half
         years.
       </p>
- 
+
       <hr class="gold-divider divider--gold-sm" />
- 
+
       <p class="thankyou__para">
-        I would also like to acknowledge <strong>Haseeb Haider</strong>,
-        <strong>Sohail Ashar</strong>, and <strong>Muhammad Sohail Raza</strong>. Thank you for
+        I would also like to acknowledge <strong>Sohail Ashraf</strong>,
+        <strong>Haseeb Haider</strong>, and <strong>Sohail Raza</strong>. Thank you for
         the environment you helped shape, one in which this work was possible.
       </p>
- 
+
       <hr class="gold-divider divider--gold-sm" />
- 
+
       <p class="thankyou__para">
         And to every staff member who shared a joke, shared a meal, or stood beside me
         through difficult moments, thank you. The true privilege of this role was never
         the work alone, but the company and laughter shared with all of you along the way.
       </p>
     </div>
- 
+
     <span class="thankyou__close-quote" aria-hidden="true">"</span>
   </div>
- 
+
 </section><!-- /#thankyou -->
 
- <!-- ============================================================
+
+<!-- ============================================================
   SECTION 8 — FINAL CLOSING
   Polaroid + gold quote + sign-off
 ============================================================ -->
-<section id="closing" class="closing section--navy
+<section id="closing" class="closing section--navy">
+
   <!-- Blurred background photo -->
   <div class="closing__bg" aria-hidden="true">
     <img src="/imgs/outings_1784966033652.jpeg" alt="" class="closing__bg-img" />
@@ -645,6 +648,23 @@
     <p class="lightbox__caption"></p>
   </div>
 </div>
+
+
+<!-- ============================================================
+  BACKGROUND MUSIC — soft nostalgic track, autoplays on load,
+  user can mute/unmute with the floating control button.
+  Replace the <source> path below with your own audio file.
+============================================================ -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="/audio/farewell-theme.mp3" type="audio/mpeg" />
+</audio>
+
+<button id="musicToggle" class="music-toggle" type="button"
+        aria-label="Pause background music" aria-pressed="true">
+  <span class="music-toggle__bars" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </span>
+</button>
 
 
 <script src="/script.js"></script>
